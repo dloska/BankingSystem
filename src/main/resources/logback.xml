@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="true" scanPeriod="3 seconds">
+
+
+    <contextName>BankingSystemApp</contextName>
+
+    <timestamp key="nowTime" datePattern="yyyy-MM-dd'_'HH-mm-ss.SSS"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{32} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logs/log-${nowTime}.log</file>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <jmxConfigurator/>
+
+    <root level="ALL">
+        <appender-ref ref="FILE"/>
+    </root>
+
+    <logger name="com.spring" level="DEBUG">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+
+</configuration>

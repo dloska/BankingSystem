@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sign Up</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"
+          th:href="@{/resources/css/bootstrap.min.css}"/>
+    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}"/>
+    <script src="../../../resources/js/jquery.min.js" th:src="@{/resources/js/jquery.min.js}"></script>
+    <script src="../../../resources/js/bootstrap.min.js" th:src="@{/resources/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<form class="form-narrow form-horizontal" method="post" th:action="@{/signup}" th:object="${signupForm}"
+      th:fragment="signupForm">
+    <!--/* Show general error message when form contains errors */-->
+    <th:block th:if="${#fields.hasErrors('${signupForm.*}')}">
+        <div th:replace="fragments/components :: alert (type='danger', message='Form contains errors. Please try again.')">
+            Alert
+        </div>
+    </th:block>
+    <fieldset>
+        <legend>Please Sign Up</legend>
+        <div th:replace="fragments/components :: inputTxtField (fieldName='email', description='Email', type='text')">
+            Input Email Field
+        </div>
+        <div th:replace="fragments/components :: inputTxtField (fieldName='firstName', description='First Name', type='text')">
+            Input First Name Field
+        </div>
+        <div th:replace="fragments/components :: inputTxtField (fieldName='lastName', description='Last Name', type='text')">
+            Input Last Name Field
+        </div>
+        <div th:replace="fragments/components :: inputTxtField (fieldName='password', description='Password', type='password')">
+            Input Password Field
+        </div>
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit" class="btn btn-default">Sign up</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <p>Already have an user? <a href="signin" th:href="@{/signin}">Sign In</a></p>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

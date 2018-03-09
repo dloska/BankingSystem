@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>User's Storages List</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link href="../../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"
+        th:href="@{/resources/css/bootstrap.min.css}"/>
+  <link href="../../../../resources/css/core.css" rel="stylesheet" media="screen"
+        th:href="@{/resources/css/core.css}"/>
+  <script src="../../../../resources/js/jquery.min.js"
+          th:src="@{/resources/js/jquery.min.js}"></script>
+  <script src="../../../../resources/js/bootstrap.min.js"
+          th:src="@{/resources/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<!-- /* Handle the flash message */-->
+<th:block th:if="${message != null}">
+  <!-- /* The message code is returned from the @Controller */ -->
+  <div
+      th:replace="fragments/components :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}})">
+    &nbsp;
+  </div>
+</th:block>
+
+<div class="container">
+  <h3 class="lead text-center">
+    User's Storages List
+  </h3>
+  <div th:replace="fragments/components :: storagesList(${storages},${true})"></div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

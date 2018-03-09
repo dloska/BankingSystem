@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Storage Space Details</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"
+        th:href="@{/resources/css/bootstrap.min.css}"/>
+  <link href="../../../resources/css/core.css" rel="stylesheet" media="screen"
+        th:href="@{/resources/css/core.css}"/>
+  <script src="../../../resources/js/jquery.min.js"
+          th:src="@{/resources/js/jquery.min.js}"></script>
+  <script src="../../../resources/js/bootstrap.min.js"
+          th:src="@{/resources/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<!-- /* Handle the flash message */-->
+<th:block th:if="${message != null}">
+  <!-- /* The message code is returned from the @Controller */ -->
+  <div
+      th:replace="fragments/components :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}})">
+    &nbsp;
+  </div>
+</th:block>
+<form class="form-narrow form-horizontal" th:object="${storageForm}">
+  <!--/* Show general error message when form contains errors */-->
+  <th:block th:if="${#fields.hasErrors('${storageForm.*}')}">
+    <div
+        th:replace="fragments/components :: alert (type='danger', message='Form contains errors. Please try again.')">
+      Alert
+    </div>
+  </th:block>
+  <fieldset>
+    <legend>Storage Details</legend>
+    <div
+        th:replace="fragments/components :: outputTxtField (fieldName='city', description='City')">
+      Input City Field
+    </div>
+    <div
+        th:replace="fragments/components :: outputTxtField (fieldName='street', description='Street')">
+      Input Street Field
+    </div>
+    <div
+        th:replace="fragments/components :: outputTxtField (fieldName='country', description='Country')">
+      Input Country Field
+    </div>
+    <div
+        th:replace="fragments/components :: outputTxtField (fieldName='latitude', description='Latitude')">
+      Input Latitude Field
+    </div>
+    <div
+        th:replace="fragments/components :: outputTxtField (fieldName='longitude', description='Longitude')">
+      Input Longitude Field
+    </div>
+    <div
+        th:replace="fragments/components :: outputTxtField (fieldName='freeSpace', description='Free Space')">
+      Input Free Space Field
+    </div>
+    <div
+        th:replace="fragments/components :: outputTxtField (fieldName='overallSpace', description='Overall Space')">
+      Input Overall Field
+    </div>
+    <div
+        th:replace="fragments/components :: outputTxtField (fieldName='description', description='Description')">
+      Input Description Field
+    </div>
+    <div
+        th:replace="fragments/components :: outputTxtField (fieldName='price', description='Price')">
+      Input Price Field
+    </div>
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-10">
+        <a href="#storage/all/list" th:href="@{/storage/all/list}" class="btn btn-default">Go back</a>
+      </div>
+    </div>
+  </fieldset>
+</form>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
